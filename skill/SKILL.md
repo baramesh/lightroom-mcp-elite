@@ -1,5 +1,5 @@
 ---
-name: lightroom-mcp-elite
+name: lightroom-mcp
 description: Control and automate Adobe Lightroom Classic through the Lightroom MCP Elite server with professional Develop controls, preset syncing, catalog organization, and seamless round-trip handoff to Adobe Photoshop for AI inpainting and composite retouching.
 ---
 
