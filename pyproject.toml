@@ -1,0 +1,32 @@
+[project]
+name = "lightroom-mcp-elite"
+version = "0.1.0"
+description = "High-performance, autonomous Adobe Lightroom Classic MCP Server in Python with Native Socket Bridging, AI Masking, Develop Controls, and Seamless Photoshop Co-op."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Baramesh" }
+]
+license = { text = "MIT" }
+keywords = ["mcp", "model-context-protocol", "lightroom", "lightroom-classic", "adobe", "photography", "ai", "automation", "photoshop"]
+dependencies = [
+    "mcp[cli]>=1.3.0",
+    "pillow>=12.3.0",
+    "pydantic>=2.13.5",
+]
+
+[project.scripts]
+lightroom-mcp = "server:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.7",
+    "bandit>=1.9.4",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
