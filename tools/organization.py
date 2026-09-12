@@ -70,3 +70,17 @@ def export_photos(
     if isinstance(res, dict):
         return res
     return {"ok": True, "output_dir": output_dir, "count": len(photo_ids)}
+
+
+def import_photos(source_path: str, collection_name: str | None = None, copy_to: str | None = None) -> dict[str, Any]:
+    """Import photos into Lightroom Classic catalog."""
+    params: dict[str, Any] = {"source_path": source_path}
+    if collection_name:
+        params["collection_name"] = collection_name
+    if copy_to:
+        params["copy_to"] = copy_to
+    res = bridge.execute("import_photos", params)
+    if isinstance(res, dict):
+        return res
+    return {"ok": True, "source_path": source_path}
+

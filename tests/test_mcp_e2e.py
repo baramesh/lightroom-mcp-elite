@@ -27,22 +27,45 @@ async def test_mcp_lightroom_e2e_lifecycle():
         tools_res = await session.list_tools()
         tool_names = [t.name for t in tools_res.tools]
 
-        # Verify key tool registrations
-        assert len(tool_names) == 17
+        # Verify all tools registered with dual aliases
+        assert "get_selected_photos" in tool_names
         assert "lightroom_get_selected_photos" in tool_names
+        assert "search_photos" in tool_names
         assert "lightroom_search_photos" in tool_names
+        assert "get_photo_metadata" in tool_names
         assert "lightroom_get_photo_metadata" in tool_names
+        assert "set_develop_settings" in tool_names
         assert "lightroom_set_develop_settings" in tool_names
+        assert "copy_develop_settings" in tool_names
         assert "lightroom_copy_develop_settings" in tool_names
+        assert "list_develop_presets" in tool_names
         assert "lightroom_list_develop_presets" in tool_names
+        assert "get_develop_preset" in tool_names
         assert "lightroom_get_develop_preset" in tool_names
+        assert "apply_develop_preset" in tool_names
         assert "lightroom_apply_develop_preset" in tool_names
+        assert "create_develop_preset" in tool_names
         assert "lightroom_create_develop_preset" in tool_names
+        assert "compare_develop_presets" in tool_names
+        assert "lightroom_compare_develop_presets" in tool_names
+        assert "export_develop_preset" in tool_names
+        assert "lightroom_export_develop_preset" in tool_names
+        assert "set_rating" in tool_names
         assert "lightroom_set_rating" in tool_names
+        assert "set_keywords" in tool_names
         assert "lightroom_set_keywords" in tool_names
+        assert "list_collections" in tool_names
         assert "lightroom_list_collections" in tool_names
+        assert "create_collection" in tool_names
         assert "lightroom_create_collection" in tool_names
+        assert "add_to_collection" in tool_names
         assert "lightroom_add_to_collection" in tool_names
+        assert "export_photos" in tool_names
         assert "lightroom_export_photos" in tool_names
+        assert "import_photos" in tool_names
+        assert "lightroom_import_photos" in tool_names
+        assert "send_to_photoshop" in tool_names
         assert "lightroom_send_to_photoshop" in tool_names
+        assert "import_retouched_photo" in tool_names
         assert "lightroom_import_retouched_photo" in tool_names
+

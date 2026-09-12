@@ -69,3 +69,42 @@ def create_develop_preset(name: str, folder: str, settings: dict[str, Any]) -> d
     if isinstance(res, dict):
         return res
     return {"ok": True, "name": name, "folder": folder}
+
+
+def compare_develop_presets(base: dict[str, Any], candidate: dict[str, Any]) -> dict[str, Any]:
+    """Compare two Develop presets and return a deterministic per-setting diff."""
+    res = bridge.execute("compare_develop_presets", {
+        "base": base,
+        "candidate": candidate
+    })
+    if isinstance(res, dict):
+        return res
+    return {"diff": res}
+
+
+def export_develop_preset(
+    destination_dir: str,
+    preset_uuid: str | None = None,
+    preset_name: str | None = None,
+    preset_folder: str | None = None,
+    preset_scope: str | None = None,
+    filename: str | None = None
+) -> dict[str, Any]:
+    """Export one exact custom or plugin-managed Develop preset backing file."""
+    params: dict[str, Any] = {"destination_dir": destination_dir}
+    if preset_uuid:
+        params["preset_uuid"] = preset_uuid
+    if preset_name:
+        params["preset_name"] = preset_name
+    if preset_folder:
+        params["preset_folder"] = preset_folder
+    if preset_scope:
+        params["preset_scope"] = preset_scope
+    if filename:
+        params["filename"] = filename
+
+    res = bridge.execute("export_develop_preset", params)
+    if isinstance(res, dict):
+        return res
+    return {"ok": True, "destination_dir": destination_dir}
+

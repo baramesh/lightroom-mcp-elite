@@ -39,6 +39,14 @@ def test_develop_tools(mock_bridge):
     created = develop.create_develop_preset("Moody Warm", "User Presets", {"Temperature": 5500})
     assert created["ok"] is True
 
+    mock_bridge.execute.return_value = {"Exposure2012": {"base": 0.0, "candidate": 0.5}}
+    diff = develop.compare_develop_presets({"preset_name": "Base"}, {"preset_name": "Candidate"})
+    assert "Exposure2012" in diff
+
+    mock_bridge.execute.return_value = {"ok": True, "exported_path": "/tmp/preset.xmp"}
+    exp_preset = develop.export_develop_preset("/tmp", preset_name="Moody Warm")
+    assert exp_preset["ok"] is True
+
 
 def test_organization_tools(mock_bridge):
     mock_bridge.execute.return_value = {"ok": True, "count": 2}
@@ -63,6 +71,10 @@ def test_organization_tools(mock_bridge):
 
     exported = organization.export_photos([1], "/output/dir")
     assert exported["ok"] is True
+
+    imported = organization.import_photos("/path/to/photo.jpg", collection_name="Holiday")
+    assert imported["ok"] is True
+
 
 
 def test_coop_tools(mock_bridge, monkeypatch, tmp_path):
